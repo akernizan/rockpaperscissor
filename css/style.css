@@ -1,0 +1,60 @@
+body{
+	font-family: sans-serif;
+	background: #5D6377;
+	color: #fff;
+}
+
+#game-container{
+	margin: 0 auto;
+	margin-top: 5%;
+}
+
+#rock,
+#paper,
+#scissor,
+#reset{
+	width: 200px;
+	height: 100px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#rock:hover,
+#paper:hover,
+#scissor:hover,
+#reset:hover{
+	width: 200px;
+	height: 100px;
+	border: 2px solid red;
+	border-radius: 3px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#button-group{
+	text-align: center;
+	margin: 0 auto;
+}
+
+#choice-group{
+	text-align: center;
+	margin-left: 25%;
+}
+
+#user-choice,
+#computer-choice{
+	border: 2px solid #fff;
+	border-radius: 3px;
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin-top: 5%;
+	margin-right: 5%;
+}
+
+#user-text,
+#computer-text{
+	margin-top: 120px;
+}
