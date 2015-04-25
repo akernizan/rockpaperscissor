@@ -1,9 +1,13 @@
-var $rockButton = $('#rock');
-var $paperButton = $('#paper');
-var $scissorsButton = $('#scissor');
+var $rockButton = 'rock'
+var $paperButton = 'paper'
+var $scissorsButton = 'scissor'
 var $resetButton = $('#reset');
 
-var rpsArray = ['Rock', 'Paper', 'Scissor']
+var rpsArray = ['Rock', 'Paper', 'Scissors']
+
+var userChoice;
+var computerChoice;
+
 
 function setComputerChoice(){
 	computerChoice = Math.random();
@@ -18,43 +22,55 @@ function setComputerChoice(){
 	$('#computer-text').text(computerChoice);
 }
 
+
 function showResult(){
  	if(userChoice === computerChoice){
- 		$('#results-text').text('It\'s a tie!');
- 	}else if(userChoice === 'Rock' && computerChoice === 'Scissors'){
- 		$('#results-text').text('You Win!!');
- 	}else if(userChoice === 'Rock' && computerChoice === 'Paper'){
- 		$('#results-text').text('Computer Wins!!');
- 	}else if(userChoice === 'Scissors' && computerChoice === 'Paper'){
- 		$('#results-text').text('You Win!!');
- 	}else if (userChoice === 'Scissors' && computerChoice === 'Rock'){
- 		$('#results-text').text('Computer Wins!!');
- 	}else if (userChoice === 'Paper' && computerChoice === 'Rock'){
- 		$('#results-text').text('You Win!!');
- 	}else if(userChoice === 'Paper' && computerChoice === 'Scissors'){
- 		$('#results-text').text('Computer Wins!!');
+ 		return $('#results-text').text('It\'s a tie!');
+
+ 	}else if(userChoice == 'Rock' && computerChoice < 0.34){
+ 		return $('#results-text').text('You Win!!');
+
+ 	}else if(userChoice == 'Rock' && computerChoice <= 0.67){
+ 		return $('#results-text').text('Computer Wins!!');
+
+ 	}else if(userChoice == 'Scissors' && computerChoice <= 0.67){
+ 		return $('#results-text').text('You Win!!');
+
+ 	}else if (userChoice == 'Scissors' && computerChoice == 'Scissors'){
+ 		return $('#results-text').text('Computer Wins!!');
+
+ 	}else if (userChoice == 'Paper' && computerChoice == 'Scissors'){
+ 		return $('#results-text').text('You Win!!');
+
+ 	}else if(userChoice == 'Paper' && computerChoice < 0.34){
+ 		return $('#results-text').text('Computer Wins!!');
+
+ 	}else{
+ 		return $('#results-text').text('ERROR');
  	}
+ 	// var resultsText = document.getElementById('results-text');
+ 	// if(userChoice == computerChoice){
+ 	// 	resultsText.innerHTML = "It's a Tie!"	
+ 	// }
 }  
-
-
 
 $(function(){
 	$('#rock').on('click', function(){
 		$('#user-text').text(rpsArray[0]);
 		setComputerChoice();
-		keepFighting();
+		showResult();
 	})
 
 	$('#scissor').on('click', function(){
 		$('#user-text').text(rpsArray[2]);
 		setComputerChoice();
-		keepFighting();
+		showResult();
 	})
 
 	$('#paper').on('click', function(){
 		$('#user-text').text(rpsArray[1]);
 		setComputerChoice();
-		keepFighting();
+		showResult();
 	})
 
 	$('#reset').on('click', function(){

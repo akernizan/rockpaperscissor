@@ -54,6 +54,11 @@ body{
 	margin-right: 5%;
 }
 
+#results{
+	clear: both;
+	text-align: center;	
+}
+
 #user-text,
 #computer-text{
 	margin-top: 120px;
