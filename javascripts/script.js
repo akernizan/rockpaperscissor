@@ -1,7 +1,8 @@
-var $rockButton = 'rock'
-var $paperButton = 'paper'
-var $scissorsButton = 'scissor'
+var $rockButton = $('#rock').val();
+var $paperButton = $('#paper').val();
+var $scissorsButton = $('#scissor').val();
 var $resetButton = $('#reset');
+var $resultsText = $('#results-text');
 
 var rpsArray = ['Rock', 'Paper', 'Scissors']
 
@@ -22,32 +23,23 @@ function setComputerChoice(){
 	$('#computer-text').text(computerChoice);
 }
 
+var deactivateButton = function(currentButton) {
+	var buttonid = "#" + currentButton;
+	var buttons = ['#rock','#scissor','#paper'];
+	buttons.forEach(function(button) {
+		if(button != buttonid) {
+			$(button).css({'visibility': 'hidden'})
+		}
+	})
+}
+
 
 function showResult(){
- 	if(userChoice === computerChoice){
- 		return $('#results-text').text('It\'s a tie!');
-
- 	}else if(userChoice == 'Rock' && computerChoice == 'Scissors'){
- 		return $('#results-text').text('You Win!!');
-
- 	}else if(userChoice == 'Rock' && computerChoice == 'Paper'){
- 		return $('#results-text').text('Computer Wins!!');
-
- 	}else if(userChoice == 'Scissors' && computerChoice == 'Paper'){
- 		return $('#results-text').text('You Win!!');
-
- 	}else if (userChoice == 'Scissors' && computerChoice == 'Rock'){
- 		return $('#results-text').text('Computer Wins!!');
-
- 	}else if (userChoice == 'Paper' && computerChoice == 'Rock'){
- 		return $('#results-text').text('You Win!!');
-
- 	}else if(userChoice == 'Paper' && computerChoice == 'Scissors'){
- 		return $('#results-text').text('Computer Wins!!');
-
- 	}else{
- 		return $('#results-text').text('ERROR');
- 	}
+	if(userChoice == computerChoice ){
+		$resultsText.text("It's a tie!! ")
+	} else if{
+		
+	}
 
 }  
 
@@ -56,24 +48,32 @@ $(function(){
 		$('#user-text').text('Rock');
 		setComputerChoice();
 		showResult();
+		deactivateButton(this.id);
 	})
 
 	$('#scissor').on('click', function(){
 		$('#user-text').text('Scissors');
 		setComputerChoice();
 		showResult();
+		deactivateButton(this.id);
 	})
 
 	$('#paper').on('click', function(){
 		$('#user-text').text('Paper');
 		setComputerChoice();
 		showResult();
+		deactivateButton(this.id);
 	})
 
 	$('#reset').on('click', function(){
 		$('#user-text').text('');
 		$('#computer-text').text('');
 		$('#results-text').text('');
+
+		$('#rock').css({'visibility': 'visible'});
+		$('#paper').css({'visibility': 'visible'});
+		$('#scissor').css({'visibility': 'visible'});
+
 	})
 
 
