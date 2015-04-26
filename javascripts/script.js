@@ -27,48 +27,45 @@ function showResult(){
  	if(userChoice === computerChoice){
  		return $('#results-text').text('It\'s a tie!');
 
- 	}else if(userChoice == 'Rock' && computerChoice < 0.34){
+ 	}else if(userChoice == 'Rock' && computerChoice == 'Scissors'){
  		return $('#results-text').text('You Win!!');
 
- 	}else if(userChoice == 'Rock' && computerChoice <= 0.67){
+ 	}else if(userChoice == 'Rock' && computerChoice == 'Paper'){
  		return $('#results-text').text('Computer Wins!!');
 
- 	}else if(userChoice == 'Scissors' && computerChoice <= 0.67){
+ 	}else if(userChoice == 'Scissors' && computerChoice == 'Paper'){
  		return $('#results-text').text('You Win!!');
 
- 	}else if (userChoice == 'Scissors' && computerChoice == 'Scissors'){
+ 	}else if (userChoice == 'Scissors' && computerChoice == 'Rock'){
  		return $('#results-text').text('Computer Wins!!');
 
- 	}else if (userChoice == 'Paper' && computerChoice == 'Scissors'){
+ 	}else if (userChoice == 'Paper' && computerChoice == 'Rock'){
  		return $('#results-text').text('You Win!!');
 
- 	}else if(userChoice == 'Paper' && computerChoice < 0.34){
+ 	}else if(userChoice == 'Paper' && computerChoice == 'Scissors'){
  		return $('#results-text').text('Computer Wins!!');
 
  	}else{
  		return $('#results-text').text('ERROR');
  	}
- 	// var resultsText = document.getElementById('results-text');
- 	// if(userChoice == computerChoice){
- 	// 	resultsText.innerHTML = "It's a Tie!"	
- 	// }
+
 }  
 
 $(function(){
 	$('#rock').on('click', function(){
-		$('#user-text').text(rpsArray[0]);
+		$('#user-text').text('Rock');
 		setComputerChoice();
 		showResult();
 	})
 
 	$('#scissor').on('click', function(){
-		$('#user-text').text(rpsArray[2]);
+		$('#user-text').text('Scissors');
 		setComputerChoice();
 		showResult();
 	})
 
 	$('#paper').on('click', function(){
-		$('#user-text').text(rpsArray[1]);
+		$('#user-text').text('Paper');
 		setComputerChoice();
 		showResult();
 	})
