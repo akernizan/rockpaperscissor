@@ -3,11 +3,13 @@ var $paperButton = $('#paper').text();
 var $scissorsButton = $('#scissor').text();
 var $resetButton = $('#reset');
 var $resultsText = $('#results-text');
+var score = 0;
+var computerScore = 0;
 
 // var rpsArray = ['Rock', 'Paper', 'Scissors']
 
-var userChoice = 'Rock' || 'Paper' || 'Scissors';
-var computerChoice = 'Rock' || 'Paper' || 'Scissors';
+var userChoice;
+var computerChoice;
 
 
 function setComputerChoice(){
@@ -28,8 +30,12 @@ var deactivateButton = function(currentButton) {
     var buttons = ['#rock','#scissor','#paper'];
     buttons.forEach(function(button) {
         if(button != buttonid) {
-            $(button).css({'visibility': 'hidden'})
-        };
+            $(button).css({'visibility': 'hidden'});
+            $(button).removeClass('selected');
+        }else{
+        	 $(button).addClass('selected');
+        	 $(buttonid).css({'visibility': 'hidden'});
+        }
     });
 };
 
@@ -37,72 +43,130 @@ var deactivateButton = function(currentButton) {
 function showResult(){
     console.log(userChoice, computerChoice);
     if ( userChoice == computerChoice){
-        $('#results-text').text('Tie');
+        $('#results-text').text('Tie!! No point...');
     }
     else if (userChoice == 'Rock') {
 
         if (computerChoice == 'Paper') {
             $('#results-text').text('Paper Wins!!');
+             computerScore += 2
+            $('#computer-score').text('Computer Score: ' + computerScore);
         } 
         else if(computerChoice == 'Scissors') {
             $('#results-text').text('Rock Wins!!');
-            
+            score += 2
+            $('#user-score').text('Player Score: ' + score);
         }
     }
     else if(userChoice == 'Scissors'){
 
         if(computerChoice == 'Rock'){
             $('#results-text').text('Rock Wins!!');
+             computerScore += 2
+            $('#computer-score').text('Computer Score: ' + computerScore);
         }
         else if(computerChoice == 'Paper'){
             $('#results-text').text('Scissors Wins!!');
+             score += 2
+            $('#user-score').text('Player Score: ' + score);
         }
     }     
     else if(userChoice == 'Paper'){
 
         if(computerChoice == 'Rock'){
             $('#results-text').text('Paper Wins!!');
+             score += 2
+            $('#user-score').text('Player Score: ' + score);
         }
         else if(computerChoice == 'Scissors'){
             $('#results-text').text('Scissors Wins!!');
+             computerScore += 2
+            $('#computer-score').text('Computer Score: ' + computerScore);
         }
     }  
 }//end of function
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return $('#reset').css({'border-color':color});
+}
+
+function hideButton(currentButton){
+	 var buttonid = "#" + currentButton;
+		var buttons = ['#rock','#scissor','#paper'];
+		buttons.forEach(function(button){
+			$(button).css({'visibility': 'hidden'});
+	});
+}
+
+function winner(currentButton){
+	if(score === 10){
+		alert('User Wins!! Score : ' + score);
+		$('#user-score').text('Player Score: ');
+		$('#computer-score').text('Computer Score: ');
+		score = 0;
+		hideButton();
+		// setInterval(function(){
+		// 	getRandomColor();
+		// },400)
+	}else if(computerScore === 10){
+		alert('Computer Wins!! Score: ' + computerScore);
+		$('#user-score').text('Player Score: ');
+		$('#computer-score').text('Computer Score: ');
+		computerScore = 0;
+		hideButton();
+		// setInterval(function(){
+		// 	getRandomColor();
+		// },400)
+	}
+
+}
+
 $(function(){
-    $('#rock').on('click', function(){
-        $('#user-text').text('Rock');
-        userChoice = 'Rock';
-        deactivateButton(this.id);
-        setComputerChoice();
-        showResult();
-    })
+	$('#rock').on('click', function(){
+	    $('#user-text').text('Rock');
+	    userChoice = 'Rock';
+	    deactivateButton(this.id);
+	    setComputerChoice();
+	    showResult();
+	    winner();
+	    
+	})
 
-    $('#scissor').on('click', function(){
-        $('#user-text').text('Scissors');
-        userChoice = 'Scissors';
-        deactivateButton(this.id);
-        setComputerChoice();
-        showResult();
-    })
+	$('#scissor').on('click', function(){
+	    $('#user-text').text('Scissors');
+	    userChoice = 'Scissors';
+	    deactivateButton(this.id);
+	    setComputerChoice();
+	    showResult();
+	    winner();
+	})
 
-    $('#paper').on('click', function(){
-        $('#user-text').text('Paper');
-        userChoice = 'Paper';
-        deactivateButton(this.id);
-        setComputerChoice();
-        showResult();
-    })
+	$('#paper').on('click', function(){
+	    $('#user-text').text('Paper');
+	    userChoice = 'Paper';
+	    deactivateButton(this.id);
+	    setComputerChoice();
+	    showResult();
+	    winner();
+	})
 
-    $('#reset').on('click', function(){
-        $('#user-text').text('');
-        $('#computer-text').text('');
-        $('#results-text').text('');
+	$('#reset').on('click', function(currentButton){
+	    $('#user-text').text('');
+	    $('#computer-text').text('');
+	    $('#results-text').text('');
 
-        $('#rock').css({'visibility': 'visible'});
-        $('#paper').css({'visibility': 'visible'});
-        $('#scissor').css({'visibility': 'visible'});
-
-    })
-
-
+	    var buttonid = "#" + currentButton;
+			var buttons = ['#rock','#scissor','#paper'];
+			buttons.forEach(function(button) {
+	    if(button != buttonid) {
+	        $(button).css({'visibility': 'visible'});
+	        $(button).removeClass('selected');
+	    }
+		});
+	})
 })
