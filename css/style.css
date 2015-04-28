@@ -44,6 +44,15 @@ ul li{
 	cursor: pointer;
 }
 
+#back-home{
+	margin-top: 10px;
+	border: 4px solid #333;
+	padding: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	color: #333;
+}
+
 .selected{
 	border: 4px solid #D61B51 !important; 
 }
