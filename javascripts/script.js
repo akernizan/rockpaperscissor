@@ -43,7 +43,7 @@ var deactivateButton = function(currentButton) {
 function showResult(){
     console.log(userChoice, computerChoice);
     if ( userChoice == computerChoice){
-        $('#results-text').text('Tie!! No point...');
+        $('#results-text').text('Tie!! No points...');
     }
     else if (userChoice == 'Rock') {
 
@@ -105,23 +105,19 @@ function hideButton(currentButton){
 
 function winner(currentButton){
 	if(score === 10){
-		alert('User Wins!! Score : ' + score);
-		$('#user-score').text('Player Score: ');
-		$('#computer-score').text('Computer Score: ');
+		alert('User Wins!!');
+		$('#user-score').text('Player Score: 0');
+		$('#computer-score').text('Computer Score: 0');
 		score = 0;
 		hideButton();
-		// setInterval(function(){
-		// 	getRandomColor();
-		// },400)
+        $('#reset').text('Play Again');
 	}else if(computerScore === 10){
-		alert('Computer Wins!! Score: ' + computerScore);
-		$('#user-score').text('Player Score: ');
-		$('#computer-score').text('Computer Score: ');
+		alert('Computer Wins!!' );
+		$('#user-score').text('Player Score: 0');
+		$('#computer-score').text('Computer Score: 0');
 		computerScore = 0;
 		hideButton();
-		// setInterval(function(){
-		// 	getRandomColor();
-		// },400)
+        $('#reset').text('Play Again');
 	}
 
 }
@@ -134,7 +130,7 @@ $(function(){
 	    setComputerChoice();
 	    showResult();
 	    winner();
-	    
+
 	})
 
 	$('#scissor').on('click', function(){
@@ -159,6 +155,7 @@ $(function(){
 	    $('#user-text').text('');
 	    $('#computer-text').text('');
 	    $('#results-text').text('');
+        $('#reset').text('AGAIN');
 
 	    var buttonid = "#" + currentButton;
 			var buttons = ['#rock','#scissor','#paper'];
